@@ -1,4 +1,4 @@
-package com.javaED.model;
+package com.javaED.model.material;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,7 +13,6 @@ public class Chapter {
             sequenceName = "chapter_sequence",
             allocationSize = 1
     )
-
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "chapter_sequence"
@@ -84,7 +83,11 @@ public class Chapter {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", unlocked=" + unlocked +
-                ", section=" + sections.toString() +
+                ", sections=" + sections.toString() +
                 '}';
+    }
+
+    public boolean completed() {
+        return true;
     }
 }

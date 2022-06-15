@@ -1,15 +1,13 @@
 package com.javaED.config;
 
-import com.javaED.model.Chapter;
-import com.javaED.model.Section;
+import com.javaED.model.material.Chapter;
+import com.javaED.model.material.Section;
 import com.javaED.repository.ChapterRepository;
 import com.javaED.repository.SectionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @Configuration

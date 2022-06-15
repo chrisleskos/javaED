@@ -1,4 +1,4 @@
-package com.javaED.model;
+package com.javaED.model.material;
 
 import javax.persistence.*;
 
