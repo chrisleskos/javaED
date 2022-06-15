@@ -30,9 +30,9 @@ public class HomeController {
         List<Chapter> chapters = chapterService.getChapters();
         model.addAttribute("chapters", chapters);
 //        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("test.html");
+//        mav.setViewName("home.html");
 //        return mav;
 
-        return "test";
+        return "home";
     }
 }
