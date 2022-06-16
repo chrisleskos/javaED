@@ -2,8 +2,13 @@ package com.javaED.config;
 
 import com.javaED.model.material.Chapter;
 import com.javaED.model.material.Section;
+import com.javaED.model.question.MultipleChoice;
+import com.javaED.model.question.Question;
+import com.javaED.model.question.TrueOrFalse;
 import com.javaED.repository.ChapterRepository;
+import com.javaED.repository.MultipleChoiceRepository;
 import com.javaED.repository.SectionRepository;
+import com.javaED.repository.TrueOrFalseRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +19,11 @@ import java.util.List;
 public class ChapterConfig {
     @Bean
     CommandLineRunner commandLineRunner(
-            ChapterRepository chapterRepository, SectionRepository sectionRepository) {
+            ChapterRepository chapterRepository,
+            SectionRepository sectionRepository,
+            MultipleChoiceRepository multipleChoiceRepository,
+            TrueOrFalseRepository trueOrFalseRepository
+    ) {
         return args -> {
             Chapter chapter1 = new Chapter(
                     "Chapter One",
@@ -44,12 +53,76 @@ public class ChapterConfig {
                     chapter2
             );
 
+            Question q1 = new MultipleChoice(
+                    "Why are we?",
+                    "because",
+                    "we",
+                    "are",
+                    section1
+            );
+
+            Question q2 = new MultipleChoice(
+                    "To be or not to be?",
+                    "because",
+                    "it",
+                    "is",
+                    section1
+            );
+
+            Question q3 = new TrueOrFalse(
+                    "A true or false question",
+                    "True",
+                    section1
+            );
+
+            Question q4 = new TrueOrFalse(
+                    "A SECOND true or false question",
+                    "False",
+                    section1
+            );
+
+            Question q5 = new MultipleChoice(
+                    "Omg fifth Multiple choice?",
+                    "YES!",
+                    "dk",
+                    "dc",
+                    section2
+            );
+
+            Question q6 = new MultipleChoice(
+                    "An extra Multiple?",
+                    "Maybe",
+                    "enough",
+                    "perfect",
+                    section2
+            );
+
+            Question q7 = new TrueOrFalse(
+                    "A THIRDD true or false question",
+                    "False",
+                    section1
+            );
+
+            Question q8 = new TrueOrFalse(
+                    "LAST true or false question",
+                    "True",
+                    section2
+            );
+
             chapterRepository.saveAll(
                     List.of(chapter1, chapter2)
             );
 
             sectionRepository.saveAll(
                     List.of(section1, section2, section3)
+            );
+
+            multipleChoiceRepository.saveAll(
+                    List.of((MultipleChoice)q1, (MultipleChoice)q2, (MultipleChoice) q5, (MultipleChoice) q6)
+            );
+
+            trueOrFalseRepository.saveAll(
+                    List.of((TrueOrFalse) q3, (TrueOrFalse)q4, (TrueOrFalse) q7, (TrueOrFalse) q8)
             );
         };
     }

@@ -1,9 +1,12 @@
 package com.javaED.model.question;
 
+import com.javaED.model.material.Chapter;
+import com.javaED.model.material.Section;
+
 import javax.persistence.*;
 
 
-@MappedSuperclass
+@Entity @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Question {
     @Id
     @SequenceGenerator(
@@ -22,17 +25,24 @@ public abstract class Question {
     protected String questionSentence;
     protected String answer;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id")
+    protected Section section;
+
+
     public Question() {}
 
-    public Question(String questionSentence, String answer) {
+    public Question(String questionSentence, String answer, Section section) {
         this.questionSentence = questionSentence;
         this.answer = answer;
+        this.section = section;
     }
 
-    public Question(int id, String questionSentence, String answer) {
+    public Question(int id, String questionSentence, String answer, Section section) {
         this.id = id;
         this.questionSentence = questionSentence;
         this.answer = answer;
+        this.section = section;
     }
 
     public int getId() {
@@ -57,5 +67,13 @@ public abstract class Question {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
     }
 }

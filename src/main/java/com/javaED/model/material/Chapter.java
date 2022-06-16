@@ -1,7 +1,11 @@
 package com.javaED.model.material;
 
+import com.javaED.model.question.Question;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "Chapter")
@@ -31,7 +35,7 @@ public class Chapter {
     private boolean unlocked;
 
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Section> sections = new HashSet<>();
+    private List<Section> sections = new ArrayList<>();
 
     public Chapter(){}
 
@@ -69,11 +73,11 @@ public class Chapter {
         this.unlocked = unlocked;
     }
 
-    public Set<Section> getSection() {
+    public List<Section> getSections() {
         return sections;
     }
 
-    public void setSection(Set<Section> section) {
+    public void setSection(List<Section> section) {
         this.sections = section;
     }
 

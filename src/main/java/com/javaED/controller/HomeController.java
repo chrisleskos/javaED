@@ -22,17 +22,9 @@ public class HomeController {
     }
 
     @GetMapping
-//    public List<Chapter> getIndex() {
-//        return chapterService.getChapters();
-//    }
     public String getIndex(Model model){
-
         List<Chapter> chapters = chapterService.getChapters();
         model.addAttribute("chapters", chapters);
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("home.html");
-//        return mav;
-
         return "home";
     }
 }

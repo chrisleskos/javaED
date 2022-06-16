@@ -1,5 +1,7 @@
 package com.javaED.model.question;
 
+import com.javaED.model.material.Section;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -9,12 +11,12 @@ public class TrueOrFalse extends Question {
 
     public TrueOrFalse() {}
 
-    public TrueOrFalse(String questionSentence, String answer) {
-        super(questionSentence, answer);
+    public TrueOrFalse(String questionSentence, String answer, Section section) {
+        super(questionSentence, answer, section);
     }
 
-    public TrueOrFalse(int id, String questionSentence, String answer) {
-        super(id, questionSentence, answer);
+    public TrueOrFalse(int id, String questionSentence, String answer, Section section) {
+        super(id, questionSentence, answer, section);
     }
 
     @Override
@@ -22,6 +24,7 @@ public class TrueOrFalse extends Question {
         return "TrueOrFalse{" +
                 "id=" + id +
                 ", questionSentence='" + questionSentence + '\'' +
+                ", section='" + section.toString() + '\'' +
                 '}';
     }
 }

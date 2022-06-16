@@ -1,6 +1,13 @@
 package com.javaED.model.material;
 
+import com.javaED.model.question.MultipleChoice;
+import com.javaED.model.question.Question;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity(name = "Section")
 @Table
@@ -31,6 +38,9 @@ public class Section {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chapter_id")
     private Chapter chapter;
+
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Question> questions = new ArrayList<>();
 
     public Section(){}
 
@@ -70,6 +80,25 @@ public class Section {
 
     public void setChapter(Chapter chapter) {
         this.chapter = chapter;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public List<Question> filterQuestionClass(Class questionClass) {
+        List<Question> filteredQuestions = new ArrayList<>();
+        for (Question q:
+             questions) {
+            if (q.getClass().equals(questionClass))
+                filteredQuestions.add(q);
+        }
+
+        return filteredQuestions;
     }
 
     @Override
