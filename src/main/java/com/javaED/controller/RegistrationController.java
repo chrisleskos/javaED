@@ -5,6 +5,7 @@ import com.javaED.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping(path = "/register")
@@ -17,13 +18,20 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
+    @GetMapping
+    public String getRegisterPage() {
+        return "register";
+    }
+
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) {
-        return registrationService.register(request);
+        registrationService.register(request);
+        return "confirmation_sent";
     }
 
     @GetMapping(path = "confirm")
-    public String confirm(@RequestParam("token") String token) {
-        return registrationService.confirmToken(token);
+    public RedirectView confirm(@RequestParam("token") String token) {
+        registrationService.confirmToken(token);
+        return new RedirectView("http://localhost:8091/login");
     }
 }
