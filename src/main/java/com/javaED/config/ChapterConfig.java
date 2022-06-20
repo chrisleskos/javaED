@@ -26,29 +26,29 @@ public class ChapterConfig {
     ) {
         return args -> {
             Chapter chapter1 = new Chapter(
-                    "Chapter One",
+                    "Variables",
                     true
             );
 
             Chapter chapter2 = new Chapter(
-                    "Chapter Two",
+                    "Operators",
                     false
             );
 
             Section section1 = new Section(
-                    "1st Section",
+                    "Variable Data Types",
                     "This is my first Section",
                     chapter1
             );
 
             Section section2 = new Section(
-                    "2nd Section",
+                    "Variable Declaration",
                     "This is my Second Section",
                     chapter1
             );
 
             Section section3 = new Section(
-                    "3rd Section",
+                    "Arithmetic Operators",
                     "This is my Third Section",
                     chapter2
             );
