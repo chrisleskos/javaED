@@ -1,14 +1,15 @@
 package com.javaED.config;
 
+import com.javaED.model.account.AppUser;
+import com.javaED.model.account.RegistrationRequest;
 import com.javaED.model.material.Chapter;
 import com.javaED.model.material.Section;
 import com.javaED.model.question.MultipleChoice;
 import com.javaED.model.question.Question;
 import com.javaED.model.question.TrueOrFalse;
-import com.javaED.repository.ChapterRepository;
-import com.javaED.repository.MultipleChoiceRepository;
-import com.javaED.repository.SectionRepository;
-import com.javaED.repository.TrueOrFalseRepository;
+import com.javaED.repository.*;
+import com.javaED.service.AppUserService;
+import com.javaED.service.RegistrationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,9 +23,17 @@ public class ChapterConfig {
             ChapterRepository chapterRepository,
             SectionRepository sectionRepository,
             MultipleChoiceRepository multipleChoiceRepository,
-            TrueOrFalseRepository trueOrFalseRepository
+            TrueOrFalseRepository trueOrFalseRepository,
+            AppUserService appUserService,
+            RegistrationService registrationService
     ) {
         return args -> {
+            RegistrationRequest request = new RegistrationRequest(
+                    "admin",
+                    "admin@example.com",
+                    "12345"
+            );
+
             Chapter chapter1 = new Chapter(
                     "Variables",
                     true
@@ -108,6 +117,10 @@ public class ChapterConfig {
                     "True",
                     section2
             );
+
+            registrationService.register(request);
+
+            appUserService.enableAppUser("admin");
 
             chapterRepository.saveAll(
                     List.of(chapter1, chapter2)
