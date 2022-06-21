@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GGEZ</title>
+</head>
+<body>
+<br>
+<h1 th:text = "${chapter.getTitle()}" />
+<div th:each = "section: ${chapter.getSections()}" th:text = "${section.toString()}"/>
+
+
+<script>
+
+</script>
+</body>
+</html>

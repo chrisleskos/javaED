@@ -123,4 +123,16 @@ public class AppUser implements UserDetails {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", locked=" + locked +
+                ", enabled=" + enabled +
+                '}';
+    }
 }
