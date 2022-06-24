@@ -4,7 +4,6 @@ import com.javaED.model.account.AppUser;
 import com.javaED.model.account.userProgress.SubmittedChapterTest;
 import com.javaED.model.material.Chapter;
 import com.javaED.model.material.Section;
-import com.javaED.model.question.Question;
 import com.javaED.model.test.TestAnswer;
 import com.javaED.model.test.ChapterTest;
 import com.javaED.service.ChapterTestService;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -45,30 +43,17 @@ public class ChapterTestController {
         return "chapter_test";
     }
 
-    @PostMapping(path = "/submit")
-    public String submitTest(@RequestParam("c") Chapter chapter, @RequestBody TestAnswer[] testAnswers){
+    @PostMapping
+    public List<TestAnswer> submitTest(@RequestParam("c") Chapter chapter, @RequestBody TestAnswer[] testAnswers){
         Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
         AppUser appUser = (AppUser) authentication.getPrincipal();
 
-        int score = 0;
-
-        for (TestAnswer testAnswer:
-             testAnswers) {
-            Question question = questionService.getQuestion(testAnswer.getId());
-            boolean correct = question.checkAnswer(testAnswer.getGivenAnswer());
-            if (correct)
-                score++;
-            else{
-                //save mistake
-            }
-
-            testAnswer.setCorrect(correct);
-        }
+        int score = chapterTestService.checkTest(testAnswers, appUser);
 
         SubmittedChapterTest submittedChapterTest = new SubmittedChapterTest(score, chapter, appUser);
 
         submitChapterTestService.saveChapterTest(submittedChapterTest);
 
-        return "redirect: /home";
+        return List.of(testAnswers);
     }
 }

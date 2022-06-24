@@ -1,10 +1,13 @@
 package com.javaED.service;
 
+import com.javaED.model.account.AppUser;
+import com.javaED.model.account.userProgress.Mistake;
 import com.javaED.model.material.Section;
 import com.javaED.model.question.MultipleChoice;
 import com.javaED.model.question.Question;
 import com.javaED.model.question.TrueOrFalse;
 import com.javaED.model.test.ChapterTest;
+import com.javaED.model.test.TestAnswer;
 import com.javaED.repository.MultipleChoiceRepository;
 import com.javaED.repository.TrueOrFalseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +20,20 @@ public class ChapterTestService {
 
     private MultipleChoiceRepository multipleChoiceRepository;
     private TrueOrFalseRepository truorFalseRepository;
+    private final QuestionService questionService;
+    private final MistakeService mistakeService;
 
     @Autowired
     public ChapterTestService(
             MultipleChoiceRepository multipleChoiceRepository,
-            TrueOrFalseRepository truorFalseRepository
-    ) {
+            TrueOrFalseRepository trueOrFalseRepository,
+            QuestionService questionService,
+            MistakeService mistakeService) {
 
+        this.multipleChoiceRepository = multipleChoiceRepository;
+        this.truorFalseRepository = trueOrFalseRepository;
+        this.questionService = questionService;
+        this.mistakeService = mistakeService;
     }
 
     public ChapterTest getTest(List<Section> sections) {
@@ -46,13 +56,31 @@ public class ChapterTestService {
 
     }
 
-    public int checkTest(ChapterTest chapterTest) {
+    public int checkTest(TestAnswer[] testAnswers, AppUser appUser) {
         int score = 0;
 
-        for (Question q:
-             chapterTest.questionsAsList()) {
-//            q.
+        for (TestAnswer testAnswer:
+                testAnswers) {
+            Question question = questionService.getQuestion(testAnswer.getId());
+            boolean correct = question.checkAnswer(testAnswer.getGivenAnswer());
+            if (correct)
+                score++;
+            else {
+                testAnswer.setCorrect(false);
+                Mistake mistake;
+                try {
+                    mistake = mistakeService.getMistake(appUser, question)
+                            .orElseThrow(() -> new Exception());
+                    mistakeService.increaseCount(mistake);
+                } catch (Exception e) {
+                    mistake = new Mistake(appUser, question);
+                    mistakeService.saveMistake(mistake);
+                }
+            }
+
+            testAnswer.setCorrect(correct);
         }
-        return 2;
+
+        return score;
     }
 }
