@@ -2,9 +2,9 @@
 <html xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>GGEZ</title>
+    <title>JavaED</title>
 </head>
 <body>
-    <div th:each = "chapter: ${chapters}" th:text = "${chapter.toString}"/>
+    <div th:each = "chapter: ${chapters}" th:text = "${chapter.getTitle}"/>
 </body>
 </html>

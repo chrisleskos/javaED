@@ -3,6 +3,7 @@ package com.javaED.controller;
 import com.javaED.model.account.RegistrationRequest;
 import com.javaED.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
@@ -23,8 +24,8 @@ public class RegistrationController {
         return "register";
     }
 
-    @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
+    @PostMapping(consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public String register(RegistrationRequest request) {
         registrationService.register(request);
         return "confirmation_sent";
     }

@@ -32,6 +32,7 @@ public class Chapter {
     )
     private String title;
 
+    @Transient
     private boolean unlocked;
 
     @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -39,14 +40,12 @@ public class Chapter {
 
     public Chapter(){}
 
-    public Chapter(String title, boolean unlocked) {
+    public Chapter(String title) {
         this.title = title;
-        this.unlocked = unlocked;
     }
 
-    public Chapter(int id, String title, boolean unlocked) {
+    public Chapter(int id, String title) {
         this.title = title;
-        this.unlocked = unlocked;
     }
 
     public int getId() {

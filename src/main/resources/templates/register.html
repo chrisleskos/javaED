@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Register
-</body>
+<html xmlns:th="https://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaED - Register</title>
+        <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/form-auth.css}">
+    </head>
+    <body>
+        <form method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="repeat-password" placeholder="Repeat Password" required>
+            <button type="submit">Register</button><br>
+            <a th:href="@{/login}">Already a member? Sign in</a>
+        </form>
+
+        <img th:src="@{images/logo.png}" class="logo">
+        <img th:src="@{images/hologram-proj.png}" class="hologram">
+    </body>
 </html>

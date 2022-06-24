@@ -2,31 +2,36 @@ package com.javaED.model.test;
 
 import com.javaED.model.material.Chapter;
 import com.javaED.model.material.Section;
+import com.javaED.model.question.MultipleChoice;
 import com.javaED.model.question.Question;
+import com.javaED.model.question.TrueOrFalse;
+import lombok.*;
 
 import java.util.List;
 
+
+@ToString
+@Getter
+@Setter
 public class ChapterTest implements Test {
-    private List<Question> questions;
 
-    public ChapterTest(List<Question> questions) {
-        this.questions = questions;
+    private MultipleChoice question1;
+    private MultipleChoice question2;
+    private MultipleChoice question3;
+    private TrueOrFalse question4;
+    private TrueOrFalse question5;
+    private TrueOrFalse question6;
+
+    public ChapterTest(MultipleChoice question1, MultipleChoice question2, MultipleChoice question3, TrueOrFalse question4, TrueOrFalse question5, TrueOrFalse question6) {
+        this.question1 = question1;
+        this.question2 = question2;
+        this.question3 = question3;
+        this.question4 = question4;
+        this.question5 = question5;
+        this.question6 = question6;
     }
 
-    public ChapterTest() {}
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    @Override
-    public String toString() {
-        return "ChapterTest{" +
-                "questions=" + questions +
-                '}';
+    public List<Question> questionsAsList() {
+        return List.of(question1, question2, question3, question4, question5, question6);
     }
 }

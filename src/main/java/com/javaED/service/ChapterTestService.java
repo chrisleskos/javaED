@@ -28,9 +28,6 @@ public class ChapterTestService {
 
     public ChapterTest getTest(List<Section> sections) {
 
-        List<Question> questions = new ArrayList<>();
-
-
         // Collect separately the question types
         List<Question> multipleChoiceQuestions = new ArrayList<>();
         List<Question> trueOrFalseQuestions = new ArrayList<>();
@@ -44,21 +41,18 @@ public class ChapterTestService {
         Collections.shuffle(multipleChoiceQuestions);
         Collections.shuffle(trueOrFalseQuestions);
 
+        return new ChapterTest((MultipleChoice)multipleChoiceQuestions.get(0), (MultipleChoice)multipleChoiceQuestions.get(1), (MultipleChoice)multipleChoiceQuestions.get(2),
+                (TrueOrFalse)trueOrFalseQuestions.get(0), (TrueOrFalse)trueOrFalseQuestions.get(1), (TrueOrFalse)trueOrFalseQuestions.get(2));
 
-        // Get 3 Multiple choice questions
-        for (int i=0; i<3; i++) {
-            MultipleChoice q = (MultipleChoice) multipleChoiceQuestions.remove(0);
-            questions.add(q);
+    }
+
+    public int checkTest(ChapterTest chapterTest) {
+        int score = 0;
+
+        for (Question q:
+             chapterTest.questionsAsList()) {
+//            q.
         }
-
-        // Get 3 True or False questions
-        for (int i=0; i<3; i++){
-            TrueOrFalse q = (TrueOrFalse) trueOrFalseQuestions.remove(0);
-            questions.add(q);
-        }
-
-
-        return new ChapterTest(questions);
-
+        return 2;
     }
 }

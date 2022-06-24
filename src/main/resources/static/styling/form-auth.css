@@ -1,0 +1,74 @@
+
+
+.logo {
+    position: absolute;
+    height: 30vh;
+}
+
+form {
+    display: flex;
+    position: absolute;
+
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 60px 100px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 6;
+
+    background: var(--hologram-color);
+
+    box-shadow: 0 0 10px 20px var(--hologram-color);
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    /* border: solid 2px rgba(100, 100, 100, 0.5); */
+    /* border-radius: 10px; */
+}
+
+form input{
+    border: none;
+    text-decoration: none;
+    margin: 12px 0;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 10px;
+
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 10px;
+}
+
+form button{
+    border: 1px solid var(--rocket-red);
+    background-color: var(--logo-yellow);
+    font-weight: bolder;
+    color: var(--galaxy-blue);
+    margin: 14px 0;
+    width: 100%;
+    font-size: 1.4rem;
+
+    font-family: 'Courier New', Courier, monospace;
+
+    padding: 10px;
+
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+form a {
+    text-decoration: none;
+    color: var(--logo-yellow);
+}
+
+.hologram {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50vh;
+    z-index: 5;
+}

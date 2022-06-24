@@ -24,7 +24,9 @@ public class TrueOrFalse extends Question {
         return "TrueOrFalse{" +
                 "id=" + id +
                 ", questionSentence='" + questionSentence + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
                 ", section='" + section.toString() + '\'' +
                 '}';
+
     }
 }

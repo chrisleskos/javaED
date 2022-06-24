@@ -35,13 +35,11 @@ public class ChapterConfig {
             );
 
             Chapter chapter1 = new Chapter(
-                    "Variables",
-                    true
+                    "Variables"
             );
 
             Chapter chapter2 = new Chapter(
-                    "Operators",
-                    false
+                    "Operators"
             );
 
             Section section1 = new Section(

@@ -1,6 +1,5 @@
 package com.javaED.model.question;
 
-import com.javaED.model.material.Chapter;
 import com.javaED.model.material.Section;
 
 import javax.persistence.*;
@@ -23,7 +22,7 @@ public abstract class Question {
     )
     protected int id;
     protected String questionSentence;
-    protected String answer;
+    protected String correctAnswer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id")
@@ -32,16 +31,16 @@ public abstract class Question {
 
     public Question() {}
 
-    public Question(String questionSentence, String answer, Section section) {
+    public Question(String questionSentence, String correctAnswer, Section section) {
         this.questionSentence = questionSentence;
-        this.answer = answer;
+        this.correctAnswer = correctAnswer;
         this.section = section;
     }
 
-    public Question(int id, String questionSentence, String answer, Section section) {
+    public Question(int id, String questionSentence, String correctAnswer, Section section) {
         this.id = id;
         this.questionSentence = questionSentence;
-        this.answer = answer;
+        this.correctAnswer = correctAnswer;
         this.section = section;
     }
 
@@ -61,12 +60,12 @@ public abstract class Question {
         this.questionSentence = questionSentence;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public Section getSection() {
@@ -75,5 +74,9 @@ public abstract class Question {
 
     public void setSection(Section section) {
         this.section = section;
+    }
+
+    public boolean checkAnswer(String givenAnswer) {
+        return givenAnswer.equals(correctAnswer);
     }
 }

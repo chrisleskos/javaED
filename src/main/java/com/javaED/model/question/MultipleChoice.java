@@ -4,9 +4,7 @@ import com.javaED.model.material.Section;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,7 +53,7 @@ public class MultipleChoice extends Question {
         List<String> choices = new ArrayList<>();
         choices.add(this.choice1);
         choices.add(this.choice2);
-        choices.add(this.answer);
+        choices.add(this.correctAnswer);
         Collections.shuffle(choices);
         return choices;
     }
@@ -70,7 +68,7 @@ public class MultipleChoice extends Question {
                 "choices='" + this.getChoices() + '\'' +
                 ", id=" + id +
                 ", questionSentence='" + questionSentence + '\'' +
-                ", answer='" + answer + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
                 ", section='" + section.toString() + '\'' +
                 '}';
     }
