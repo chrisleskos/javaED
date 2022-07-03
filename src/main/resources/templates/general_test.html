@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>GGEZ</title>
-</head>
-<body>
-<div th:each = "question: ${generalTest.questions}" th:text = "${question.toString()}"/>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>javaED - General Test</title>
+        <base href="/">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/navbar.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/test.css}">
+    </head>
+    <body>
+        <th:block th:insert="navbar :: navbar"/>
+
+        <div class="form-container">
+            <h1 style="color: white">General Test</h1>
+            <form>
+                <div class="question" th:each = "question, i: ${generalTest.questionsAsList()}" th:switch="${question.class.name}">
+                    <div class="question-sentence" th:text = "${i.index} + 1 + '. ' + ${question.getQuestionSentence()}" />
+
+                    <div class="choices" th:case = "'com.javaED.model.question.MultipleChoice'" >
+                        <th:block th:each = "choice : ${question.getChoices()}">
+                            <input type="radio" th:value="${choice}" th:name="${question.getId()}">
+                            <span th:text="${choice}"/>
+                        </th:block>
+                    </div>
+
+                    <div class="choices" th:case = "'com.javaED.model.question.TrueOrFalse'">
+                        <input type="radio" value="True" th:name="${question.getId()}">
+                        <span>True</span>
+                        <input type="radio" value="False" th:name="${question.getId()}">
+                        <span>False</span>
+                    </div>
+
+                </div>
+                <button class="submit-button" type="button" onclick=sendTest()>Save</button>
+            </form>
+        </div>
+        <script th:src = "@{/javascript/chapterTest.js}"></script>
+    </body>
 </html>

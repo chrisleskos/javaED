@@ -1,35 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="https://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>GGEZ</title>
+        <title>javaED - Chapter Test</title>
+        <base href="/">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/navbar.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/test.css}">
     </head>
     <body>
+        <th:block th:insert="navbar :: navbar"/>
+        <div class="form-container">
+            <h1 style="color: white">Chapter Test</h1>
+            <form>
+                <div class="question" th:each = "question, i: ${chapterTest.questionsAsList()}" th:switch="${question.class.name}">
+                    <div class="question-sentence" th:text = "${i.index} + 1 + '. ' + ${question.getQuestionSentence()}" />
 
-        <form>
-            <div class="question" th:each = "question: ${chapterTest.questionsAsList()}" th:switch="${question.class.name}">
-                <div class="question-sentence" th:text = "${question.getQuestionSentence()}" />
+                    <div class="choices" th:case = "'com.javaED.model.question.MultipleChoice'" >
+                        <th:block th:each = "choice : ${question.getChoices()}">
+                            <input type="radio" th:value="${choice}" th:name="${question.getId()}">
+                            <span th:text="${choice}"/>
+                        </th:block>
+                    </div>
 
-                <div class="choices" th:case = "'com.javaED.model.question.MultipleChoice'" >
-                    <th:block th:each = "choice : ${question.getChoices()}">
-                        <input type="radio" th:value="${choice}" th:name="${question.getId()}">
-                        <span th:text="${choice}"/>
-                    </th:block>
+                    <div class="choices" th:case = "'com.javaED.model.question.TrueOrFalse'">
+                        <input type="radio" value="True" th:name="${question.getId()}">
+                        <span>True</span>
+                        <input type="radio" value="False" th:name="${question.getId()}">
+                        <span>False</span>
+                    </div>
+
                 </div>
-
-                <div class="choices" th:case = "'com.javaED.model.question.TrueOrFalse'">
-                    <input type="radio" value="true" th:name="${question.getId()}">
-                    <span>True</span>
-                    <input type="radio" value="false" th:name="${question.getId()}">
-                    <span>False</span>
-                </div>
-
-            </div>
-<!--            <input type="text" name="name" value="UOO">-->
-<!--            <input type="text" name="name" value="marry">-->
-<!--            <input type="text" name="name" value="george">-->
-            <button type="button" onclick=sendTest()>Save</button>
-        </form>
+                <button class="submit-button" type="button" onclick=sendTest()>Submit</button>
+            </form>
+        </div>
 
         <script th:src = "@{/javascript/chapterTest.js}">
 

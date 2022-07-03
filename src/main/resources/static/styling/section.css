@@ -1,0 +1,49 @@
+.section-content {
+    color: white;
+    padding: 40px;
+    line-height: 1.6;
+}
+
+.section-title {
+    font-size: 2rem;
+    padding: 15px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.example {
+
+}
+
+.example-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.example-content {
+    border-left: 3px var(--logo-yellow) solid;
+    margin-left: 40px;
+    padding-left: 10px;
+}
+
+.keyword {
+    color: rgb(255, 50, 80);
+    font-weight: bold;
+}
+
+.numeric-value {
+    color: rgb(20, 140, 255);
+}
+
+.boolean-value {
+    color: rgb(255, 100, 0);
+}
+
+.string-char-value {
+    color: rgb(0, 180, 0);
+}
+
+.comment-value {
+    color: lightgrey;
+}

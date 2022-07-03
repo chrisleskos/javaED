@@ -1,0 +1,67 @@
+body {
+    background: linear-gradient(to top, var(--hologram-color), var(--galaxy-blue) 50%,var(--hologram-color) 400%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.form-container{
+    position: relative;
+    margin: 20px 30px;
+    height: 86%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--hologram-color);
+
+    overflow-y: auto;
+}
+
+form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 40px 90px;
+
+    background-color: var(--galaxy-blue);
+}
+
+form .question {
+    margin: 8px 0px;
+}
+
+form .question-sentence {
+    color: var(--logo-yellow);
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+.question .choices {
+    color: white;
+}
+
+form .submit-button {
+    width: 60%;
+    background: var(--logo-yellow);
+    font-size: 2rem;
+
+    border-radius: 10px;
+
+    margin: 20px auto;
+
+    cursor: pointer;
+}
+
+.correct {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.incorrect {
+    background-color: rgba(255, 0, 0, 0.1);
+}

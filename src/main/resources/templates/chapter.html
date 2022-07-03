@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>GGEZ</title>
-</head>
-<body>
-<br>
-<h1 th:text = "${chapter.getTitle()}" />
-<div th:each = "section: ${chapter.getSections()}" th:text = "${section.toString()}"/>
+    <head>
+        <meta charset="UTF-8">
+        <title>javaED</title>
+        <base href="/">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/navbar.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/chapter.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/section.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/online-help.css}">
+    </head>
+    <body>
+        <th:block th:insert="navbar :: navbar"/>
+        <br>
+        <h1 th:text = "${chapter.getTitle()}" class="chapter-title"/>
+        <div class="content-aligning-platform"></div>
 
-
-<script>
-
-</script>
-</body>
+        <div class="sections">
+            <th:block th:each = "section: ${chapter.getSections()}" >
+                <div onclick="showSection(this)"  th:text = "${section.getTitle()}" class="section" th:title="${section.getTitle()}"/>
+                <div th:insert = "@{'sections/' + ${section.getContent()}} :: content" th:title="${section.getTitle()}" class="section-content-wrapper"/>
+            </th:block>
+            <a th:href = "@{/chapter/test(c=${chapter.getId()})}" class="chapter-test-button">Take Chapter Test</a>
+        </div>
+        <div class="online-help">
+            <div class="help-content-wrapper">
+                <div class="help-header">
+                    <span><b>Chapter Page - Online Help</b></span>
+                    <div class="close-help-button" onclick="closeOnlineHelp()">
+                        X
+                    </div>
+                </div>
+                <img th:src="@{images/chapter-page-help.png}">
+            </div>
+        </div>
+        <script th:src="@{javascript/onlineHelp.js}"></script>
+        <script th:src = "@{javascript/showSection.js}"></script>
+    </body>
 </html>

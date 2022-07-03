@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="https://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>JavaED</title>
-</head>
-<body>
-    <div th:each = "chapter: ${chapters}" th:text = "${chapter.getTitle}"/>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaED</title>
+        <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/navbar.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/home.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/online-help.css}">
+    </head>
+    <body>
+        <th:block th:insert="navbar :: navbar-home"/>
+
+        <div class="content-window">
+            <div class="welcome-message">
+                Welcome back <span th:text = "${user.getUsername}" />!
+            </div>
+            <div class="chapters">
+                <div class="select-message">Select a chapter</div>
+                <div class="selections">
+                    <th:block th:each = "chapter: ${chapters}">
+                        <a th:href = "@{/chapter(c=${chapter.getId()})}" th:attr="class=${chapter.isUnlocked() ? 'chapter-wrapper' : 'chapter-wrapper locked'}">
+                            <div class="chapter-title">
+                                <span th:text = "${chapter.getTitle()}">Variables</span>
+                            </div>
+                            <div class="sections">
+                                <span th:each = "section: ${chapter.getSections()}" th:text="${section.getTitle()}">Section 1</span>
+                            </div>
+                        </a>
+                        <br>
+                    </th:block>
+                    <br>
+                    <a th:attr="class=${openGeneralTest ? 'general-test' : 'hide-general-test'}"
+                       th:href = "@{/general_test}">
+                        General Test
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="online-help">
+            <div class="help-content-wrapper">
+                <div class="help-header">
+                    <span><b>Home Page - Online Help</b></span>
+                    <div class="close-help-button" onclick="closeOnlineHelp()">
+                        X
+                    </div>
+                </div>
+                <img th:src="@{images/home-page-help.png}">
+            </div>
+        </div>
+        <script th:src="@{javascript/onlineHelp.js}"></script>
+    </body>
 </html>

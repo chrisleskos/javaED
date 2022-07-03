@@ -2,12 +2,10 @@ package com.javaED.service;
 
 import com.javaED.model.account.AppUser;
 import com.javaED.model.account.userProgress.Mistake;
-import com.javaED.model.question.MultipleChoice;
+import com.javaED.model.material.Section;
 import com.javaED.model.question.Question;
-import com.javaED.model.test.Test;
 import com.javaED.repository.MistakeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,15 +24,15 @@ public class MistakeService {
         mistakeRepository.save(mistake);
     }
 
-    public Optional<Mistake> getMistake(AppUser appUser, Question question){
-        return mistakeRepository.findByUserAndQuestion(appUser, question);
+    public Optional<Mistake> getMistake(AppUser appUser, Section section){
+        return mistakeRepository.findByAppUserAndQuestion(appUser, section);
     }
 
     public List<Mistake> getUserMistakes(AppUser appUser){
         return mistakeRepository.findByUser(appUser);
     }
 
-    public void increaseCount(Mistake mistake) {
-        mistakeRepository.updateCount(mistake);
+    public void updateCount(Mistake mistake) {
+        mistakeRepository.updateMistakeCount(mistake.getCount(), mistake.getId());
     }
 }

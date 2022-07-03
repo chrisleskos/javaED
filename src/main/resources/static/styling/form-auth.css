@@ -1,4 +1,6 @@
-
+body {
+    background: var(--galaxy-blue);
+}
 
 .logo {
     position: absolute;

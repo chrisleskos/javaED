@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+    <div th:fragment="content" class="section-content">
+        <div class="section-title">Data Types</div>
+        Variables are containers for storing data values. <br>
+        In Java, there are different types of variables, for example:
+        <ul>
+            <li><span class="keyword">String</span> - stores text, such as <span class="string-char-value">"Hello"</span>. String values are surrounded by double quotes</li>
+            <li><span class="keyword">int</span> - stores integers (whole numbers), without decimals, such as <span class="numeric-value">123</span> or <span class="numeric-value">-123</span></li>
+            <li><span class="keyword">float</span> - stores floating point numbers, with decimals, such as <span class="numeric-value">19.99</span> or <span class="numeric-value">-19.99</span></li>
+            <li><span class="keyword">char</span> - stores single characters, such as <span class="string-char-value">'a'</span> or <span class="string-char-value">'B'</span>.Char values are surrounded by single quotes</li>
+            <li><span class="keyword">boolean</span> - stores values with two states: <span class="boolean-value">true</span> or <span class="boolean-value">false</span></li>
+        </ul>
+        <br>
+        <div class="example">
+            <div class="example-header">Example</div>
+            <div class="example-content">
+                <span class="keyword">int</span> myNum = <span class="numeric-value">5</span>;               <span class="comment-value">// Integer (whole number)</span><br>
+                <span class="keyword">float</span> myFloatNum = <span class="numeric-value">5.99f</span>;    <span class="comment-value">// Floating point number</span><br>
+                <span class="keyword">char</span> myLetter = <span class="string-char-value">'D'</span>;         <span class="comment-value">// Character</span><br>
+                <span class="keyword">boolean</span> myBool = <span class="boolean-value">true</span>;       <span class="comment-value">// Boolean</span><br>
+                <span class="keyword">String</span> myText = <span class="string-char-value">"Hello"</span>;     <span class="comment-value">// String</span>
+            </div>
+        </div>
+        <br>
+        <div>
+            Data types are divided into two groups:
+            <ul>
+                <li>
+                    Primitive data types - includes
+                    <span class="keyword">byte</span>, <span class="keyword">short</span>,
+                    <span class="keyword">int</span>, <span class="keyword">long</span>,
+                    <span class="keyword">float</span>, <span class="keyword">double</span>,
+                    <span class="keyword">boolean</span> and <span class="keyword">char</span>
+                </li>
+                <li>Non-primitive data types - such as
+                    <span class="keyword">String</span>, <span class="keyword">Arrays</span> and
+                    <span class="keyword">Classes</span> (you will learn more about these in a later chapter)</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

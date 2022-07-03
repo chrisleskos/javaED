@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+    <body>
+        <div th:fragment="content" class="section-content">
+            <div class="section-title">Declaration</div>
+            To create a variable, you must specify the type and assign it a value:
+            <br>
+            <div class="example">
+                <div class="example-header">Example</div>
+                <div class="example-content">
+                    <span class="keyword">type</span> variableName = value;
+                </div>
+            </div>
+            <br>
+            Where type is one of Java's types (such as <span class="keyword">int</span> or <span class="keyword">String</span>), and variableName is the name of the variable (such as <b>x</b> or <b>name</b>). The <b>equal</b> sign is used to assign values to the variable.
+            <br><br>
+            To create a variable that should store an integer, look at the following example:
+            <br><br>
+            <div class="example">
+                <div class="example-header">Example</div>
+                Create a variable called myNum of type int and assign it the value 15:
+                <div class="example-content">
+                    <span class="keyword">int</span> myNum = <span class="numeric-value">15</span>; <br>
+                    <span class="keyword">System.out.println</span>(myNum);
+                </div>
+            </div>
+            <br>
+            You can also declare a variable without assigning the value, and assign the value
+            <br><br>
+            <div class="example">
+                <div class="example-header">Example</div>
+                <div class="example-content">
+                    <span class="keyword">int</span> myNum; <br>
+                    myNum = <span class="numeric-value">15</span>; <br>
+                    <span class="keyword">System.out.println</span>(myNum);
+                </div>
+            </div>
+            <br>
+            Note that if you assign a new value to an existing variable, it will overwrite the previous value:
+            <br><br>
+            <div class="example">
+                <div class="example-header">Example</div>
+                <div class="example-content">
+                    <span class="keyword">int</span> myNum = <span class="numeric-value">15</span>; <br>
+                    myNum = <span class="numeric-value">20</span>; <br>
+                    <span class="keyword">System.out.println</span>(myNum);
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

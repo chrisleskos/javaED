@@ -1,0 +1,115 @@
+body {
+    background: url(../images/galaxy.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.content-window {
+    /* display: flex; */
+
+    margin: 20px 30px;
+    height: 86%;
+
+    overflow: auto;
+
+    background-color: var(--hologram-color);
+}
+
+.content-window .welcome-message {
+
+    padding: 40px 55px;
+    font-size: 1.7rem;
+    color: var(--logo-yellow);
+}
+
+.content-window .select-message {
+    font-size: 1.4rem;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+.content-window .selections {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.content-window .chapter-wrapper {
+    text-decoration: none;
+    display: block;
+    position: relative;
+
+    min-width: 30%;
+    padding-bottom: 0px;
+    border-radius: 15px;
+    background-color: white;
+
+    transition-duration: 0.5s;
+}
+
+.content-window .general-test {
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    font-size: 2.5rem;
+
+    padding: 10px 0;
+
+    width: 30%;
+    cursor: pointer;
+
+    border-radius: 15px;
+    background-color: var(--logo-yellow);
+
+    z-index: 2;
+    color: black;
+}
+
+.content-window .hide-general-test {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.content-window .locked {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.content-window .chapter-wrapper:not(.locked):hover {
+    padding-bottom: 40px;
+    transition-duration: 0.5s;
+}
+
+.content-window .chapter-title {
+    position: relative;
+    font-size: 2.5rem;
+    color: white;
+    padding: 30px 50px;
+
+    cursor: pointer;
+
+    border-radius: 15px;
+    background-color: var(--galaxy-blue);
+
+    z-index: 2;
+}
+
+.content-window .sections {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+}
+
+.content-window .sections span {
+    margin: 5px;
+}
+

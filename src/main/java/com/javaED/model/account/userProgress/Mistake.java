@@ -3,19 +3,13 @@ package com.javaED.model.account.userProgress;
 import com.javaED.model.account.AppUser;
 import com.javaED.model.material.Section;
 import com.javaED.model.question.Question;
-import com.javaED.model.test.Test;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table
 @NoArgsConstructor
-@Getter
-@Setter
 public class Mistake {
     @Id
     @SequenceGenerator(
@@ -38,21 +32,69 @@ public class Mistake {
     @ManyToOne
     @JoinColumn(
             nullable = false,
-            name = "question_id"
+            name = "section_id"
     )
-    private Question question;
+    private Section section;
 
-    private int count = 1;
+    private int count;
 
-    public Mistake(AppUser appUser, Question question) {
+    public Mistake(AppUser appUser, Section section) {
         this.appUser = appUser;
-        this.question = question;
+        this.section = section;
+        this.count = 1;
     }
 
-    public Mistake(int id, AppUser appUser, Question question, int count) {
+    public Mistake(int id, AppUser appUser, Section section, int count) {
         this.id = id;
         this.appUser = appUser;
-        this.question = question;
+        this.section = section;
         this.count = count;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "Mistake{" +
+                "id=" + id +
+                ", appUser=" + appUser +
+                ", section=" + section +
+                ", count=" + count +
+                '}';
+    }
+
+    public void increaseCount() {
+        this.count++;
     }
 }

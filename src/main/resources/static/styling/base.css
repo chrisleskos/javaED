@@ -9,10 +9,10 @@
 }
 
 body {
-    background: var(--galaxy-blue);
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     overflow-x: hidden;
+    margin: 0;
 
     font-family: 'Courier New', Courier, monospace;
 }

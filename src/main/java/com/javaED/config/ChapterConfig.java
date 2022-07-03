@@ -43,75 +43,93 @@ public class ChapterConfig {
             );
 
             Section section1 = new Section(
-                    "Variable Data Types",
-                    "This is my first Section",
+                    "Data Types",
+                    "data-types",
                     chapter1
             );
 
             Section section2 = new Section(
-                    "Variable Declaration",
-                    "This is my Second Section",
+                    "Declaration",
+                    "declaration",
                     chapter1
             );
 
             Section section3 = new Section(
                     "Arithmetic Operators",
-                    "This is my Third Section",
+                    "section1",
+                    chapter2
+            );
+
+            Section section4 = new Section(
+                    "Comparison Operators",
+                    "section1",
+                    chapter2
+            );
+
+            Section section5 = new Section(
+                    "Logical Operators",
+                    "section1",
                     chapter2
             );
 
             Question q1 = new MultipleChoice(
-                    "Why are we?",
-                    "because",
-                    "we",
-                    "are",
+                    "Which of these is a type of int?",
+                    "25",
+                    "0.32",
+                    "'b'",
                     section1
             );
 
             Question q2 = new MultipleChoice(
-                    "To be or not to be?",
-                    "because",
-                    "it",
-                    "is",
+                    "The variable 'myVar' holds the value 'true'. Its data type is:",
+                    "boolean",
+                    "float",
+                    "String",
                     section1
             );
 
             Question q3 = new TrueOrFalse(
-                    "A true or false question",
+                    "A variable of type char is declared with single quotes",
                     "True",
                     section1
             );
 
             Question q4 = new TrueOrFalse(
-                    "A SECOND true or false question",
+                    "A variable of type int cannot be negative.",
                     "False",
+                    section1
+            );
+
+            Question q7 = new TrueOrFalse(
+                    "The value \"John\" is of type String",
+                    "True",
                     section1
             );
 
             Question q5 = new MultipleChoice(
-                    "Omg fifth Multiple choice?",
-                    "YES!",
-                    "dk",
-                    "dc",
+                    "Which of the choices has a right syntax?",
+                    "int myNum = 15;",
+                    "int 15 = myNum;",
+                    "myNum int = 15;",
                     section2
             );
 
             Question q6 = new MultipleChoice(
-                    "An extra Multiple?",
-                    "Maybe",
-                    "enough",
-                    "perfect",
+                    "Values to variables are a signed with the symbol:",
+                    "'='",
+                    "'<'",
+                    "'->'",
                     section2
             );
 
-            Question q7 = new TrueOrFalse(
-                    "A THIRDD true or false question",
+            Question q8 = new TrueOrFalse(
+                    "I can declare a variable as int and store a float later",
                     "False",
-                    section1
+                    section2
             );
 
-            Question q8 = new TrueOrFalse(
-                    "LAST true or false question",
+            Question q9 = new TrueOrFalse(
+                    "I can declare a variable and store its value later",
                     "True",
                     section2
             );
@@ -125,7 +143,7 @@ public class ChapterConfig {
             );
 
             sectionRepository.saveAll(
-                    List.of(section1, section2, section3)
+                    List.of(section1, section2, section3, section4, section5)
             );
 
             multipleChoiceRepository.saveAll(
@@ -133,7 +151,7 @@ public class ChapterConfig {
             );
 
             trueOrFalseRepository.saveAll(
-                    List.of((TrueOrFalse) q3, (TrueOrFalse)q4, (TrueOrFalse) q7, (TrueOrFalse) q8)
+                    List.of((TrueOrFalse) q3, (TrueOrFalse)q4, (TrueOrFalse) q7, (TrueOrFalse) q8, (TrueOrFalse) q9)
             );
         };
     }

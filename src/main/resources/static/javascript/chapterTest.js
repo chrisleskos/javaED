@@ -15,7 +15,7 @@ async function sendTest() {
     }
 
 
-    const response = await fetch("http://localhost:8091/chapter/test/submit" + window.location.search, {
+    const response = await fetch(window.location.href, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,5 +24,25 @@ async function sendTest() {
 
     })
 
-    return answers
+    response.json()
+        .then(data => {
+            console.log(data[0])
+
+            for(ans of data){
+                for(inp of inputs) {
+                    if (inp.name == ans.id.toString()) {
+                        if (ans.correct) {
+                            inp.parentElement.parentElement.classList.remove("incorrect");
+                            inp.parentElement.parentElement.classList.add("correct");
+                        } else {
+                            inp.parentElement.parentElement.classList.remove("correct");
+                            inp.parentElement.parentElement.classList.add("incorrect");
+                        }
+
+                    }
+
+                }
+            }
+
+    })
 }

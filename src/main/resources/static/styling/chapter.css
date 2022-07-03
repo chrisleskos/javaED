@@ -1,0 +1,93 @@
+body {
+    background: linear-gradient(to top, var(--hologram-color), var(--galaxy-blue) 50%,var(--hologram-color) 400%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.chapter-title {
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.sections {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    width: 30%;
+    /*height: 40%;*/
+}
+
+.side-sections {
+    word-break: break-all;
+    transform: translate(0%, -50%);
+    left: 0%;
+
+    width: 15%;
+
+    transition-duration: 0.5s;
+}
+
+.section, .chapter-test-button {
+    text-decoration: none;
+    padding: 20px 0px;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+
+    width: 100%;
+
+    margin-bottom: 15px;
+}
+
+.side-sections .section, .side-sections .chapter-test-button {
+    font-size: 1.3rem;
+}
+
+.section {
+    background: var(--galaxy-blue);
+}
+
+.selected-section, .section:hover, .chapter-test-button:hover {
+    background: white;
+    color: black;
+}
+
+.chapter-test-button {
+    background: var(--logo-yellow);
+}
+
+.section-content-wrapper {
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    background-color: var(--hologram-color);
+    width: 50%;
+    max-height: 50vh;
+
+    margin-bottom: 50px;
+
+    overflow-y: auto;
+
+    display: none;
+}
+
+.content-aligning-platform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
