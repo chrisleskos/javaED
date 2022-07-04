@@ -97,4 +97,8 @@ public class Mistake {
     public void increaseCount() {
         this.count++;
     }
+
+    public void decreaseCount() {
+        if (this.count > 0) this.count--;
+    }
 }

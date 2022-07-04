@@ -12,7 +12,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     background-color: var(--hologram-color);
@@ -64,4 +64,42 @@ form .submit-button {
 
 .incorrect {
     background-color: rgba(255, 0, 0, 0.1);
+}
+
+.results {
+
+}
+
+.results .score {
+    color: white;
+    font-size: 3rem;
+    font-weight: bolder;
+
+    text-align: center;
+}
+
+.results .mistake-notes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.results .mistake-notes > div{
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+.results .mistake-notes .unhappy-note {
+    background-color: rgba(200, 0, 0, 0.8);
+}
+
+.results .mistake-notes .happy-note {
+    background-color: rgba(0, 200, 0, 0.8);
 }

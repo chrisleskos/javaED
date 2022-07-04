@@ -1,9 +1,15 @@
 package com.javaED.model.test;
 
+import com.javaED.model.account.userProgress.Mistake;
+import com.javaED.model.material.Section;
+
 public class TestAnswer {
     private int id;
     private String givenAnswer;
+    private String correctAnswer;
     private boolean correct;
+    private String section_title;
+    private int mistake_count;
 
     public TestAnswer(int id, String givenAnswer) {
         this.id = id;
@@ -34,11 +40,27 @@ public class TestAnswer {
         this.correct = correct;
     }
 
-    @Override
-    public String toString() {
-        return "TestAnswer{" +
-                "id=" + id +
-                ", givenAnswer='" + givenAnswer + '\'' +
-                '}';
+    public String getSection_title() {
+        return section_title;
+    }
+
+    public void setSection_title(String section_title) {
+        this.section_title = section_title;
+    }
+
+    public int getMistake_count() {
+        return mistake_count;
+    }
+
+    public void setMistake_count(int mistake_count) {
+        this.mistake_count = mistake_count;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 }

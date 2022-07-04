@@ -2,6 +2,7 @@ package com.javaED.service;
 
 import com.javaED.model.account.AppUser;
 import com.javaED.model.account.userProgress.Mistake;
+import com.javaED.model.material.Chapter;
 import com.javaED.model.material.Section;
 import com.javaED.model.question.Question;
 import com.javaED.model.test.GeneralTest;
@@ -30,8 +31,15 @@ public abstract class TestService {
                 testAnswers) {
             Question question = questionService.getQuestion(testAnswer.getId());
             boolean correct = question.checkAnswer(testAnswer.getGivenAnswer());
-            if (correct)
+            if (correct) {
                 score++;
+                try {
+                    Mistake mistake = mistakeService.getMistake(appUser, question.getSection())
+                            .orElseThrow(() -> new Exception());
+                    mistake.decreaseCount();
+                    mistakeService.updateCount(mistake);
+                } catch (Exception e) { }
+            }
             else {
                 testAnswer.setCorrect(false);
                 Mistake mistake = null;
@@ -46,6 +54,10 @@ public abstract class TestService {
                     mistake = new Mistake(appUser, question.getSection());
                     mistakeService.saveMistake(mistake);
                 }
+
+                testAnswer.setMistake_count(mistake.getCount());
+                testAnswer.setSection_title(question.getSection().getChapter().getTitle() + ": " + question.getSection().getTitle());
+                testAnswer.setCorrectAnswer(question.getCorrectAnswer());
             }
 
             testAnswer.setCorrect(correct);

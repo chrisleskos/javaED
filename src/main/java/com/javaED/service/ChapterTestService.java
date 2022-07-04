@@ -31,6 +31,11 @@ public class ChapterTestService extends TestService {
     }
 
 
+    public List<ChapterTest> bestTest(Chapter chapter, AppUser appUser) {
+        return submitChapterTestRepository.countTests(chapter, appUser);
+    }
+
+
     public Test getTest(List<Section> sections) {
 
         // Collect separately the question types
@@ -52,6 +57,6 @@ public class ChapterTestService extends TestService {
     }
 
     public boolean hasPassedTest(Chapter chapter, AppUser appUser) {
-        return submitChapterTestRepository.existsPassedTest(chapter, appUser);
+        return submitChapterTestRepository.existsPassedTest(chapter, appUser) > 0;
     }
 }

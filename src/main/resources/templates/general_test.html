@@ -7,6 +7,7 @@
         <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
         <link type="text/css" rel="stylesheet" th:href="@{styling/navbar.css}">
         <link type="text/css" rel="stylesheet" th:href="@{styling/test.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/online-help.css}">
     </head>
     <body>
         <th:block th:insert="navbar :: navbar"/>
@@ -35,6 +36,18 @@
                 <button class="submit-button" type="button" onclick=sendTest()>Save</button>
             </form>
         </div>
+        <div class="online-help">
+            <div class="help-content-wrapper">
+                <div class="help-header">
+                    <span><b>General Test Page - Online Help</b></span>
+                    <div class="close-help-button" onclick="closeOnlineHelp()">
+                        X
+                    </div>
+                </div>
+                <img th:src="@{images/general-test-page-help.png}">
+            </div>
+        </div>
+        <script th:src="@{javascript/onlineHelp.js}"></script>
         <script th:src = "@{/javascript/chapterTest.js}"></script>
     </body>
 </html>

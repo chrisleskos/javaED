@@ -1,5 +1,6 @@
 package com.javaED.service;
 
+import com.javaED.model.account.AppUser;
 import com.javaED.model.question.MultipleChoice;
 import com.javaED.model.question.Question;
 import com.javaED.model.question.TrueOrFalse;
@@ -57,5 +58,9 @@ public class GeneralTestService extends TestService{
     @Override
     public void saveTest(Test submittedTest) {
         this.submitGeneralTestRepository.save((GeneralTest)submittedTest);
+    }
+
+    public List<GeneralTest> bestTest(AppUser appUser) {
+        return submitGeneralTestRepository.countTests(appUser);
     }
 }

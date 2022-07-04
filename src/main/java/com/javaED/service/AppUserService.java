@@ -60,11 +60,6 @@ public class AppUserService implements UserDetailsService {
         return token.getToken();
     }
 
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-
     public void enableAppUser(String username) {
         userRepository.enableAppUser(username);
     }

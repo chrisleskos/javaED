@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>javaED - Profile</title>
+    <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{styling/navbar.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{styling/profile.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{styling/online-help.css}">
+</head>
+<body>
+    <th:block th:insert="navbar :: navbar-profile"/>
+
+    <div class="user-details">
+        <span>Usenrname: </span><span th:text = "${user.getUsername()}"/><br>
+        <span>Email: </span><span th:text = "${user.getEmail()}"/><br>
+    </div>
+</body>
+</html>

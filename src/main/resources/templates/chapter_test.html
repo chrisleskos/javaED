@@ -7,10 +7,19 @@
         <link type="text/css" rel="stylesheet" th:href="@{styling/base.css}">
         <link type="text/css" rel="stylesheet" th:href="@{styling/navbar.css}">
         <link type="text/css" rel="stylesheet" th:href="@{styling/test.css}">
+        <link type="text/css" rel="stylesheet" th:href="@{styling/online-help.css}">
     </head>
     <body>
         <th:block th:insert="navbar :: navbar"/>
         <div class="form-container">
+            <div class="results">
+                <div class="score">
+                    <span id="score"></span>
+                </div>
+                <div class="mistake-notes">
+
+                </div>
+            </div>
             <h1 style="color: white">Chapter Test</h1>
             <form>
                 <div class="question" th:each = "question, i: ${chapterTest.questionsAsList()}" th:switch="${question.class.name}">
@@ -35,8 +44,18 @@
             </form>
         </div>
 
-        <script th:src = "@{/javascript/chapterTest.js}">
-
-        </script>
+        <div class="online-help">
+            <div class="help-content-wrapper">
+                <div class="help-header">
+                    <span><b>Chapter Test Page - Online Help</b></span>
+                    <div class="close-help-button" onclick="closeOnlineHelp()">
+                        X
+                    </div>
+                </div>
+                <img th:src="@{images/chapter-test-page-help.png}">
+            </div>
+        </div>
+        <script th:src="@{javascript/onlineHelp.js}"></script>
+        <script th:src = "@{/javascript/chapterTest.js}"></script>
     </body>
 </html>
