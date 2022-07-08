@@ -12,32 +12,50 @@
         <th:block th:insert="navbar :: navbar-home"/>
 
         <div class="content-window">
-            <div class="welcome-message">
-                Welcome back <span th:text = "${user.getUsername}" />!
-            </div>
-            <div class="chapters">
-                <div class="select-message">Select a chapter</div>
-                <div class="selections">
-                    <th:block th:each = "chapter: ${chapters}">
-                        <a th:href = "@{/chapter(c=${chapter.getId()})}" th:attr="class=${chapter.isUnlocked() ? 'chapter-wrapper' : 'chapter-wrapper locked'}">
-                            <div class="chapter-title">
-                                <span th:text = "${chapter.getTitle()}">Variables</span>
-                            </div>
-                            <div class="sections">
-                                <span th:each = "section: ${chapter.getSections()}" th:text="${section.getTitle()}">Section 1</span>
-                            </div>
-                        </a>
-                        <br>
-                    </th:block>
-                    <br>
-                    <a th:attr="class=${openGeneralTest ? 'general-test' : 'hide-general-test'}"
-                       th:href = "@{/general_test}">
-                        General Test
-                    </a>
+            <div class="chapter-wrapper">
+                <img class="planet earth" th:src="@{images/earth.png}">
+                <span class="big-message">Welcome to JavaED</span>
+                <span class="small-message">An online java learning platform. Scroll down to start the journey</span>
+                <div class="scroll-arrow scroll">
+                    <img th:src="@{images/go.png}" onclick="document.querySelectorAll('.chapter-wrapper')[1].scrollIntoView({ behavior: 'smooth', block: 'center'})">
                 </div>
             </div>
+            <th:block th:each = "chapter, i: ${chapters}">
+                <div th:attr="class=${chapter.isUnlocked() ? 'chapter-wrapper' : 'chapter-wrapper locked'}">
+                    <th:block th:if = "${i.index} != 0">
+                        <div class="chapter-nav-btn prev-chapter" th:onclick="'navigateToChapters('+ ${i.index} +')'">
+                            <img th:src="@{images/go.png}">
+                            <br>
+                            <span>Previous</span>
+                        </div>
+                    </th:block>
+                    <img class="planet" th:src="@{images/planet.png}">
+                    <span class="big-message" th:text = "${chapter.title}" />
+                    <div class="scroll-arrow go">
+                        ★★☆☆☆
+                        <a th:href = "@{/chapter(c=${chapter.id})}">
+                            <img th:src="@{images/go.png}">
+                        </a>
+                    </div><br><br>
+                    <div class="small-message">
+                        <ul th:each = "section: ${chapter.sections}">
+                            <li th:text="${section.title}"/>
+                        </ul>
+                    </div>
+                    <th:block th:if = "${i.index} < ${i.size} - 1 ">
+                        <div class="chapter-nav-btn next-chapter" th:onclick="'navigateToChapters('+ ${i.index + 2} +')'">
+                            <span>Next</span>
+                            <br>
+                            <img th:src="@{images/go.png}">
+                        </div>
+                    </th:block>
+                </div>
+            </th:block>
         </div>
-
+        <a th:attr="class=${openGeneralTest ? 'general-test' : 'hide-general-test'}"
+           th:href = "@{/general_test}">
+            General Test
+        </a>
         <div class="online-help">
             <div class="help-content-wrapper">
                 <div class="help-header">
@@ -50,5 +68,6 @@
             </div>
         </div>
         <script th:src="@{javascript/onlineHelp.js}"></script>
+        <script th:src="@{javascript/planets.js}"></script>
     </body>
 </html>
